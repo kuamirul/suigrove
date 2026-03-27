@@ -1,0 +1,12 @@
+# Node
+frontend/node_modules/
+frontend/.next/
+frontend/.env.local
+
+# Sui / Move build artifacts
+contracts/build/
+contracts/Move.lock
+
+# OS
+.DS_Store
+Thumbs.db
