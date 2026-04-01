@@ -56,7 +56,7 @@ fun init(ctx: &mut TxContext) {
 /// Called once after publish to create the shared FarmRegistry.
 /// Pass the TreasuryCap received from the publish transaction.
 /// Seeds the initial three crop types.
-public entry fun initialize_registry(
+public fun initialize_registry(
     _: &AdminCap,
     treasury_cap: TreasuryCap<FARM_TOKEN>,
     ctx: &mut TxContext
@@ -88,7 +88,7 @@ public entry fun initialize_registry(
 }
 
 /// Admin: add a new crop type after launch (e.g., seasonal crops).
-public entry fun add_crop_type(
+public fun add_crop_type(
     _: &AdminCap,
     registry: &mut FarmRegistry,
     crop_type: u8,

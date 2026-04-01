@@ -174,7 +174,7 @@ fun test_harvest_success() {
 }
 
 #[test]
-#[expected_failure(abort_code = farm::ECropNotReady)]
+#[expected_failure(abort_code = 5)]
 fun test_harvest_too_early_fails() {
     let mut scenario = ts::begin(ALICE);
     setup_registry(&mut scenario);
@@ -219,7 +219,7 @@ fun test_harvest_too_early_fails() {
 }
 
 #[test]
-#[expected_failure(abort_code = farm::ENotOwner)]
+#[expected_failure(abort_code = 1)]
 fun test_plant_by_non_owner_fails() {
     let bob: address = @0xB0B;
     let mut scenario = ts::begin(ALICE);
@@ -238,7 +238,7 @@ fun test_plant_by_non_owner_fails() {
     {
         let mut farm_obj = ts::take_from_address<farm::Farm>(&scenario, ALICE);
         let registry = ts::take_shared<FarmRegistry>(&scenario);
-        let mut clock = clock::create_for_testing(ts::ctx(&mut scenario));
+        let clock = clock::create_for_testing(ts::ctx(&mut scenario));
 
         farm::plant(&mut farm_obj, &registry, &clock, 0, 0, ts::ctx(&mut scenario));
 

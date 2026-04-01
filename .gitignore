@@ -7,6 +7,11 @@ frontend/.env.local
 contracts/build/
 contracts/Move.lock
 
+# Sui CLI binaries (downloaded during install, not part of the project)
+contracts/sui
+contracts/sui-*
+contracts/*.tgz
+
 # OS
 .DS_Store
 Thumbs.db

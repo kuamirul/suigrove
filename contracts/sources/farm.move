@@ -68,20 +68,18 @@ public struct CropHarvested has copy, drop {
 
 // ===== Error codes =====
 
-public const ENotOwner: u64        = 1;
-public const EInvalidPlot: u64     = 2;
-public const EPlotNotEmpty: u64    = 3;
-public const EPlotNotPlanted: u64  = 4;
-public const ECropNotReady: u64    = 5;
-public const EMaxPlotsReached: u64 = 6;
-public const EInsufficientPayment: u64 = 7;
+const ENotOwner: u64       = 1;
+const EInvalidPlot: u64    = 2;
+const EPlotNotEmpty: u64   = 3;
+const EPlotNotPlanted: u64 = 4;
+const ECropNotReady: u64   = 5;
 
 // ===== Entry functions =====
 
 /// Creates a new farm for the caller with 4 starter plots.
 /// Each address can call this multiple times (multiple farms allowed),
 /// but typically one farm per player is the intended design.
-public entry fun create_farm(
+public fun create_farm(
     registry: &mut FarmRegistry,
     ctx: &mut TxContext
 ) {
@@ -115,7 +113,7 @@ public entry fun create_farm(
 /// Plants a crop on an empty plot.
 /// `clock` must be object 0x6 — the Sui system clock.
 /// Reads crop config from registry, records the plant timestamp.
-public entry fun plant(
+public fun plant(
     farm: &mut Farm,
     registry: &FarmRegistry,
     clock: &Clock,
@@ -150,7 +148,7 @@ public entry fun plant(
 
 /// Harvests a fully grown crop and mints GROVE tokens to the player.
 /// Aborts with ECropNotReady if the grow time hasn't elapsed yet.
-public entry fun harvest(
+public fun harvest(
     farm: &mut Farm,
     registry: &mut FarmRegistry,
     clock: &Clock,
@@ -188,8 +186,8 @@ public entry fun harvest(
 
 // ===== Phase 2 placeholder =====
 
-/// Expand the farm by one plot (max 25) by burning GROVE tokens.
-/// Uncomment and implement in Phase 2.
+// Expand the farm by one plot (max 25) by burning GROVE tokens.
+// Uncomment and implement in Phase 2.
 // public entry fun expand_farm(
 //     farm: &mut Farm,
 //     registry: &mut FarmRegistry,

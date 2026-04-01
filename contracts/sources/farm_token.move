@@ -14,6 +14,7 @@ public struct FARM_TOKEN has drop {}
 /// Called automatically when the package is published.
 /// Creates the GROVE currency and sends TreasuryCap to the deployer.
 /// The deployer then passes TreasuryCap to `initialize_registry`.
+#[allow(deprecated_usage)]
 fun init(witness: FARM_TOKEN, ctx: &mut TxContext) {
     let (treasury_cap, metadata) = coin::create_currency<FARM_TOKEN>(
         witness,
@@ -38,6 +39,7 @@ public fun init_for_testing(ctx: &mut TxContext) {
 }
 
 #[test_only]
+#[allow(deprecated_usage)]
 public fun get_treasury_cap_for_testing(ctx: &mut TxContext): TreasuryCap<FARM_TOKEN> {
     let (treasury_cap, metadata) = coin::create_currency<FARM_TOKEN>(
         FARM_TOKEN {},
