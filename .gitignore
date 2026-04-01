@@ -12,6 +12,10 @@ contracts/sui
 contracts/sui-*
 contracts/*.tgz
 
+# Deploy output (local reference only, not needed in repo)
+publish-output.json
+registry-output.json
+
 # OS
 .DS_Store
 Thumbs.db
