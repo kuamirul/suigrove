@@ -7,10 +7,16 @@ frontend/.env.local
 contracts/build/
 contracts/Move.lock
 
-# Sui CLI binaries (downloaded during install, not part of the project)
+# Sui CLI binaries and auto-generated files (not part of the project)
 contracts/sui
 contracts/sui-*
 contracts/*.tgz
+contracts/move-analyzer
+contracts/Published.toml
+
+# Claude local files
+.claude/
+log.txt
 
 # Deploy output (local reference only, not needed in repo)
 publish-output.json
