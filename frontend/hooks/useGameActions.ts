@@ -11,20 +11,21 @@ import { PACKAGE_ID, FARM_REGISTRY_ID, CLOCK_ID } from '@/lib/constants';
 export function useGameActions() {
   const { mutate: signAndExecute, isPending } = useSignAndExecuteTransaction();
 
-  function createFarm(onSuccess: () => void) {
+  function createFarm(onSuccess: () => void, onError?: (e: Error) => void) {
     const tx = new Transaction();
     tx.moveCall({
       target: `${PACKAGE_ID}::farm::create_farm`,
       arguments: [tx.object(FARM_REGISTRY_ID)],
     });
-    signAndExecute({ transaction: tx }, { onSuccess });
+    signAndExecute({ transaction: tx }, { onSuccess, onError });
   }
 
   function plantCrop(
     farmId: string,
     plotIndex: number,
     cropType: number,
-    onSuccess: () => void
+    onSuccess: () => void,
+    onError?: (e: Error) => void
   ) {
     const tx = new Transaction();
     tx.moveCall({
@@ -37,13 +38,14 @@ export function useGameActions() {
         tx.pure.u8(cropType),
       ],
     });
-    signAndExecute({ transaction: tx }, { onSuccess });
+    signAndExecute({ transaction: tx }, { onSuccess, onError });
   }
 
   function harvestCrop(
     farmId: string,
     plotIndex: number,
-    onSuccess: () => void
+    onSuccess: () => void,
+    onError?: (e: Error) => void
   ) {
     const tx = new Transaction();
     tx.moveCall({
@@ -55,7 +57,7 @@ export function useGameActions() {
         tx.pure.u8(plotIndex),
       ],
     });
-    signAndExecute({ transaction: tx }, { onSuccess });
+    signAndExecute({ transaction: tx }, { onSuccess, onError });
   }
 
   return { createFarm, plantCrop, harvestCrop, isPending };
